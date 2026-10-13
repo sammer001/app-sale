@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="robots" content="noindex">
+  <title>Painel do barbeiro</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+  <header class="topo">
+    <div class="container topo__inner">
+      <a href="index.html" class="marca" data-nome></a>
+      <nav class="menu">
+        <a href="index.html">Ver site</a>
+        <button class="btn btn--sm btn--ghost" id="sair" type="button" hidden>Sair</button>
+      </nav>
+    </div>
+  </header>
+
+  <form class="login" id="login" hidden>
+    <h2>Área do barbeiro</h2>
+    <label>PIN
+      <input name="pin" type="password" inputmode="numeric" autocomplete="current-password" required autofocus>
+    </label>
+    <p class="erro" id="erro-login" role="alert"></p>
+    <button class="btn" type="submit" style="width:100%">Entrar</button>
+  </form>
+
+  <main class="admin container" id="painel" hidden>
+    <div class="filtros">
+      <label>Dia
+        <input type="date" id="f-data">
+      </label>
+      <button class="btn btn--sm btn--ghost" id="f-anterior" type="button" aria-label="Dia anterior">‹</button>
+      <button class="btn btn--sm btn--ghost" id="f-hoje" type="button">Hoje</button>
+      <button class="btn btn--sm btn--ghost" id="f-proximo" type="button" aria-label="Próximo dia">›</button>
+      <label>Barbeiro
+        <select id="f-barbeiro"></select>
+      </label>
+    </div>
+
+    <h2 id="titulo-dia"></h2>
+    <div class="stats" id="stats"></div>
+    <div class="colunas" id="colunas"></div>
+  </main>
+
+  <script src="js/config.js"></script>
+  <script src="js/store.js"></script>
+  <script src="js/admin.js"></script>
+</body>
+</html>

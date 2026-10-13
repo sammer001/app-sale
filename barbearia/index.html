@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Navalha & Cia — Agende seu horário</title>
+  <meta name="description" content="Agende seu corte, barba e outros serviços online.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+  <header class="topo">
+    <div class="container topo__inner">
+      <a href="#" class="marca" data-nome></a>
+      <nav class="menu">
+        <a href="#servicos">Serviços</a>
+        <a href="#equipe">Equipe</a>
+        <a href="#meus">Meus horários</a>
+        <a href="#agendar" class="btn btn--sm">Agendar</a>
+      </nav>
+    </div>
+  </header>
+
+  <section class="hero">
+    <div class="container hero__inner">
+      <p class="eyebrow">Barbearia desde 2012</p>
+      <h1>Seu horário marcado,<br>sem fila e sem espera.</h1>
+      <p class="hero__sub" data-slogan></p>
+      <div class="hero__acoes">
+        <a href="#agendar" class="btn">Agendar agora</a>
+        <a href="#servicos" class="btn btn--ghost">Ver serviços</a>
+      </div>
+      <ul class="hero__info">
+        <li><strong>Endereço</strong><span data-endereco></span></li>
+        <li><strong>Funcionamento</strong><span data-funcionamento></span></li>
+        <li><strong>Telefone</strong><span data-telefone></span></li>
+      </ul>
+    </div>
+  </section>
+
+  <section id="servicos" class="secao">
+    <div class="container">
+      <h2 class="secao__titulo">Serviços</h2>
+      <div class="grade-servicos" id="lista-servicos"></div>
+    </div>
+  </section>
+
+  <section id="equipe" class="secao secao--alt">
+    <div class="container">
+      <h2 class="secao__titulo">Equipe</h2>
+      <div class="grade-equipe" id="lista-equipe"></div>
+    </div>
+  </section>
+
+  <section id="agendar" class="secao">
+    <div class="container">
+      <h2 class="secao__titulo">Agendar horário</h2>
+
+      <div class="agenda">
+        <div class="agenda__main">
+          <ol class="passos" id="passos">
+            <li data-passo="1">Serviço</li>
+            <li data-passo="2">Barbeiro</li>
+            <li data-passo="3">Data e hora</li>
+            <li data-passo="4">Seus dados</li>
+          </ol>
+
+          <div class="painel" data-painel="1">
+            <h3>Qual serviço você quer?</h3>
+            <div class="opcoes" id="opcoes-servico"></div>
+          </div>
+
+          <div class="painel" data-painel="2" hidden>
+            <h3>Com quem?</h3>
+            <div class="opcoes" id="opcoes-barbeiro"></div>
+          </div>
+
+          <div class="painel" data-painel="3" hidden>
+            <h3>Escolha o dia</h3>
+            <div class="dias" id="dias"></div>
+            <h3>E o horário</h3>
+            <div class="horas" id="horas"></div>
+            <p class="legenda"><span class="ponto ponto--livre"></span>Disponível <span class="ponto ponto--ocupado"></span>Ocupado</p>
+          </div>
+
+          <div class="painel" data-painel="4" hidden>
+            <h3>Seus dados</h3>
+            <form id="form-dados" novalidate>
+              <label>Nome
+                <input name="nome" autocomplete="name" required placeholder="Como podemos te chamar?">
+              </label>
+              <label>WhatsApp
+                <input name="telefone" type="tel" inputmode="numeric" autocomplete="tel" required placeholder="(11) 98765-4321">
+              </label>
+              <label>Observação <span class="opcional">(opcional)</span>
+                <textarea name="observacao" rows="2" placeholder="Ex.: quero manter o comprimento em cima"></textarea>
+              </label>
+              <p class="erro" id="erro-form" role="alert"></p>
+            </form>
+          </div>
+
+          <div class="painel painel--sucesso" data-painel="ok" hidden>
+            <div class="check" aria-hidden="true">✓</div>
+            <h3>Horário confirmado!</h3>
+            <p>Código do agendamento: <strong id="ok-codigo"></strong></p>
+            <p id="ok-resumo" class="ok-resumo"></p>
+            <div class="acoes-sucesso">
+              <a class="btn" id="ok-whatsapp" target="_blank" rel="noopener">Avisar no WhatsApp</a>
+              <button class="btn btn--ghost" id="ok-ics" type="button">Adicionar à agenda</button>
+              <button class="btn btn--link" id="ok-novo" type="button">Fazer outro agendamento</button>
+            </div>
+          </div>
+
+          <div class="navegacao" id="navegacao">
+            <button class="btn btn--ghost" id="voltar" type="button">Voltar</button>
+            <button class="btn" id="avancar" type="button">Continuar</button>
+          </div>
+        </div>
+
+        <aside class="resumo" id="resumo">
+          <h3>Resumo</h3>
+          <dl>
+            <dt>Serviço</dt><dd data-r="servico">—</dd>
+            <dt>Barbeiro</dt><dd data-r="barbeiro">—</dd>
+            <dt>Data</dt><dd data-r="data">—</dd>
+            <dt>Horário</dt><dd data-r="hora">—</dd>
+          </dl>
+          <div class="resumo__total"><span>Total</span><strong data-r="preco">—</strong></div>
+          <p class="resumo__nota">Pagamento na barbearia. Cancele até 2h antes pelo “Meus horários”.</p>
+        </aside>
+      </div>
+    </div>
+  </section>
+
+  <section id="meus" class="secao secao--alt">
+    <div class="container estreito">
+      <h2 class="secao__titulo">Meus horários</h2>
+      <form class="busca" id="form-busca">
+        <input name="telefone" type="tel" inputmode="numeric" placeholder="Digite seu WhatsApp" required>
+        <button class="btn" type="submit">Buscar</button>
+      </form>
+      <div id="meus-lista"></div>
+    </div>
+  </section>
+
+  <footer class="rodape">
+    <div class="container rodape__inner">
+      <span data-nome></span>
+      <span data-endereco></span>
+      <a href="admin.html">Área do barbeiro</a>
+    </div>
+  </footer>
+
+  <script src="js/config.js"></script>
+  <script src="js/store.js"></script>
+  <script src="js/app.js"></script>
+</body>
+</html>
